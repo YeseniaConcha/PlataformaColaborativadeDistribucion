@@ -1,0 +1,52 @@
+{% extends "sistema/base.html" %}
+
+{%block title%}
+    Home
+{% endblock %}
+
+{%block contenido%}
+    {%if user.is_authenticated%}
+        <h3>Bienvenido a La Plataforma de colaboración {{user.nombre_completo}}</h3>
+    {%else%}
+    <title>Bienvenido a la Plataforma Colaborativa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        
+        .welcome-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px;
+        }
+        
+        h3, h5 {
+            color: #333;
+            line-height: 1.4;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h5 {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <h1>&nbsp;</h1> <!-- Agrega un espacio en blanco que actuará como salto de línea -->
+        <h3>¡Le damos la más cordial bienvenida a la innovadora plataforma web colaborativa!</h3>
+        <h3>Aquí, te invitamos a explorar un mundo de conocimiento y colaboración.</h3>
+        <h1>&nbsp;</h1> <!-- Agrega un espacio en blanco que actuará como salto de línea -->
+        <h5>Descubre noticias, investigaciones y trabajos de título. Esta plataforma está diseñada para fomentar el aprendizaje y la creatividad.</h5>
+        <h5>¡Esperamos que disfrutes de tu experiencia y aproveches al máximo esta plataforma!</h5>
+    </div>
+</body>
+    {%endif%}
+{%endblock%}

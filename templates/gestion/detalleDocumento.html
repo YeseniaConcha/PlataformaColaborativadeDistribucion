@@ -1,0 +1,48 @@
+{% extends "sistema/base.html" %}
+
+{% block title %}
+Detalle del Documento
+{% endblock %}
+
+{% block contenido %}
+  {% if user.is_authenticated %}
+    <div class="container my-3 mx-3 text-center">
+      <div class="alert alert-primary text-center text-uppercase w-50 mx-auto p-2 rounded">
+        <h3 class="text-white">Detalle del Documento</h3>
+      </div>
+    </div>
+
+    <div class="container mt-3">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Nombre del Documento: {{ documento.nombreDocumento }}</h4>
+          <p class="card-text">Descripción: {{ documento.descripcionDocumento }}</p>
+          <p class="card-text">Fecha de Publicación: {{ documento.fecha_publicacion }}</p>
+          <p class="card-text">
+            Archivo: <a href="{{ documento.archivo_pdf.url }}" target="_blank">{{ documento.archivo_pdf.name }}</a>
+          </p>
+          <p class="card-text">
+            <a href="{{ documento.archivo_pdf.url }}" download="{{ documento.archivo_pdf.name }}" class="btn btn-success" data-toggle="tooltip" data-original-title="Descargar">
+              Descargar
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end mt-3">
+        {%if user.tipo_permisos == 0%}
+        <a href="{% url 'editarDocumento' id=documento.id %}" class="btn btn-warning" data-toggle="tooltip"
+          data-original-title="Editar">
+          Editar
+        </a>
+        {% endif %}
+        <a href="{% url 'documentos' %}" class="btn btn-primary ms-3" data-toggle="tooltip" data-original-title="Volver">
+          Volver a la lista de documentos
+        </a>
+      </div>
+    </div>
+  {% else %}
+    <h3>Usuario no autenticado</h3>
+    <h5>No tienes acceso al sistema</h5>
+  {% endif %}
+{% endblock %}

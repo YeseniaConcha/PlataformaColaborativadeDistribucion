@@ -1,0 +1,110 @@
+{% extends "sistema/base.html" %}
+
+{%block title%}
+Usuarios registrados
+{% endblock %}
+
+{%block contenido%}
+{%if user.is_authenticated%}
+<div class="container my-3 mx-3 text-center">
+    <div class="alert-primary text-center text-uppercase d-inline-block w-50 mx-auto p-2 rounded">
+        <h3 class="text-white">Usuarios registrados</h3>
+    </div>
+</div>
+<div class="d-flex justify-content-end mb-1">
+    <a href="{%url 'crearUsuario'%}" class="btn btn-success btn-md" data-toggle="tooltip" data-original-title="Crear">
+        añadir
+    </a>
+</div>
+<div class="card">
+    <div class="table-responsive">
+        <table id="example" class=" display mt-5 table align-items-center mb-0" style="width: 100%">
+            <thead>
+                <tr>
+                    <th class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7">Nombre
+                    </th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Dirección</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Teléfono
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Estado
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rol</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in lista_usuarios %}
+                <tr>
+
+                    <td class="align-middle text-center">
+                        <p class="text-xs font-weight-bold mb-0 fs-6">{{ usuario.nombre_completo }}</p>
+                    </td>
+
+                    <td>
+                        <p class="text-xs font-weight-bold mb-0 fs-6">{{ usuario.direccion }}</p>
+                    </td>
+
+                    <td class="align-middle text-center text-sm">
+                        <p class="text-xs font-weight-bold mb-0 fs-6">{{ usuario.telefono }}</p>
+                    </td>
+
+                    <td class="align-middle text-center text-sm">
+                        <p class="text-xs font-weight-bold mb-0 fs-6">{{ usuario.email }}</p>
+                    </td>
+
+                    <td class="align-middle text-center text-sm">
+                        {% if usuario.is_active %}
+                        <button class="text-xs font-weight-bold mb-0 fs-6 btn btn-success" disabled>Activo</button>
+                        {% else %}
+                        <button class="text-xs font-weight-bold mb-0 fs-6 btn btn-danger" disabled>Inactivo</button>
+                        {% endif %}
+                    </td>
+
+                    <td class="align-middle text-center text-sm">
+                        <p class="text-xs font-weight-bold mb-0 fs-6">
+                            {% if usuario.tipo_permisos == 0 %}
+                            Administrador
+                            {% elif usuario.tipo_permisos == 1 %}
+                            MiembroUa
+
+                            {% endif %}
+                        </p>
+                    </td>
+
+                    <td class="align-middle text-center">
+                        <a href="{%url 'editarUsuario' id=usuario.id%}" class="btn btn-warning btn-md mb-0"
+                            data-toggle="tooltip" data-original-title="Editar">
+                            Editar
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7">Nombre
+                    </th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Dirección</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Teléfono
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Estado
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rol</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+{%else%}
+<h3>Usuario no autenticado</h3>
+<h5>No tienes acceso al sistema</h5>
+
+{%endif%}
+{%endblock%}

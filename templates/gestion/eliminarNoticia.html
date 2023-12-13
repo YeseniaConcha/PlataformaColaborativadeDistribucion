@@ -1,0 +1,16 @@
+{% extends "sistema/base.html" %}
+
+{% block contenido %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">¿Estás seguro de que deseas eliminar la noticia "{{ noticia.titulo }}"?</h2>
+            <form id="eliminarForm" action="{% url 'eliminarNoticia' id=noticia.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+                <a href="{% url 'noticias' %}" class="btn btn-secondary ms-2">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+/* Estilo para etiquetas de formulario */
+.form-label {
+    font-weight: bold;
+    color: #333; /* Color de texto */
+}
+
+/* Estilo para campos de formulario */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc; /* Borde del campo */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px;
+    color: #333; /* Color de texto */
+}
+
+/* Estilo para botones */
+.btn {
+    background-color: #007bff; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Estilo para botones secundarios */
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+/* Estilo para botones de peligro */
+.btn-danger {
+    background-color: #dc3545;
+}
